@@ -16,7 +16,10 @@
         BorderBrush="{DynamicResource AccentColorBrush}"
         WindowStartupLocation="CenterScreen"
         Dialog:DialogParticipation.Register="{Binding}"
-        Title="{Binding WindowTitle}" MinHeight="445" MinWidth="750" ShowMaxRestoreButton="False" ShowMinButton="True"
+                      Height="445"
+                      Width="750"
+                      ResizeMode="NoResize"
+        Title="{Binding WindowTitle}" ShowMaxRestoreButton="False" ShowMinButton="True"
         WindowState="{Binding WindowState}"  WindowTransitionsEnabled="False"
         Closing="mainWindow_Closing">
     <controls:MetroWindow.Resources>
@@ -33,6 +36,31 @@
             <Image Source="{Binding BackgroundImageSource}" Stretch="UniformToFill"/>
             <media:MediaElementWrapper x:Name="mediaElement" Volume="{Binding Volume}" Source="{Binding MediaSource}" Visibility="Collapsed"
                                    IsPlaying="{Binding IsPlaying}" d:DataContext="{x:Null}"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" Width="464">
+            <StackPanel Orientation="Vertical">
+                <userControl:AdControl Margin="0,15,0,0"></userControl:AdControl>
+                <Grid Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*">
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <controls:Tile Title="官网" HorizontalTitleAlignment="Right" Grid.Row="0" Grid.Column="0" Height="100">
+                        <iconPacks:FontAwesome Kind="EdgeBrands" Height="60" Width="60"/>
+                    </controls:Tile>
+                    <controls:Tile Title="皮肤站" HorizontalTitleAlignment="Right" Grid.Row="0" Grid.Column="1" Height="100">
+                        <iconPacks:FontAwesome Kind="SafariBrands" Height="60" Width="60"/>
+                    </controls:Tile>
+                    <controls:Tile Title="礼物" HorizontalTitleAlignment="Right" Grid.Row="0" Grid.Column="2" Height="100">
+                        <iconPacks:FontAwesome Kind="GiftSolid" Height="60" Width="60"/>
+                    </controls:Tile>
+                </Grid>
+            </StackPanel>
         </Grid>
         <Grid HorizontalAlignment="Right" Width="280">
             <Rectangle x:Name="blurBackgroundRect">
@@ -52,7 +80,7 @@
                     </VisualBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle Fill="{DynamicResource WhiteColorBrush}" Opacity="0.6"/>
+            <Rectangle Fill="{DynamicResource WhiteColorBrush}" Opacity="0.5"/>
             <!--#endregion-->
             <userControl:MainPanelControl Margin="10"
                                           AuthNodesSource="{Binding AuthNodes, Mode=OneWay}" 
