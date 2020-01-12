@@ -8,7 +8,6 @@
              Height="261"
              mc:Ignorable="d">
     <!--公告显示-->
-    <Controls:FlipView x:Name="FlipView"
-                   Foreground="{DynamicResource WhiteBrush}"
-                                   IsEnabled="False" SelectedIndex="{Binding FlipSelectedIndex}"/>
+    <Controls:FlipView x:Name="flipView" MouseUp="FlipView_MouseUp" SelectionChanged="FlipView_SelectionChanged">
+    </Controls:FlipView>
 </UserControl>

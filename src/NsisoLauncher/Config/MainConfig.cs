@@ -352,6 +352,19 @@ namespace NsisoLauncher.Config
         /// </summary>
         public ushort Port { get; set; }
 
+        /// <summary>
+        /// 皮肤站
+        /// </summary>
+        public string SkinUrl{ get;set;}
+        /// <summary>
+        /// 官网
+        /// </summary>
+        public string OfficialUrl { get; set; }
+        /// <summary>
+        /// 服务器模式
+        /// </summary>
+        public bool ServerMode { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 

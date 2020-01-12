@@ -18,6 +18,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -35,10 +36,12 @@ namespace NsisoLauncher.Views.Windows
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-
+        //想不到更好的方法来添加公告窗口
+        public static Grid MainGrid;
         public MainWindow()
         {
             InitializeComponent();
+            MainGrid = mainGrid;
             App.LogHandler.AppendDebug("启动器主窗体已载入");
         }
 

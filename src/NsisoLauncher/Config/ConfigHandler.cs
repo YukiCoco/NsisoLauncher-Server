@@ -224,6 +224,8 @@ namespace NsisoLauncher.Config
                 },
                 Server = new Server()
                 {
+                    SkinUrl = "",
+                    OfficialUrl = "",
                     ShowServerInfo = false,
                     LaunchToServer = false,
                     Port = 25565

@@ -95,6 +95,7 @@ namespace NsisoLauncher.ViewModels
         /// </summary>
         public int DownloadTaskCount { get; set; }
 
+
         public MainWindowViewModel()
         {
             #region 命令初始化

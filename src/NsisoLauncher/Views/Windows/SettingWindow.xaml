@@ -386,8 +386,13 @@
 
                         <Expander Header="Minecraft服务器设置" Margin="0,0,0,5">
                             <StackPanel>
+                                <CheckBox Content="服务器模式" IsChecked="{Binding Server.ServerMode}" Margin="0,0,0,5"/>
                                 <CheckBox Content="在主界面显示服务器信息" IsChecked="{Binding Server.ShowServerInfo}" Margin="0,0,0,5"/>
                                 <CheckBox Content="启动后自动进入服务器" IsChecked="{Binding Server.LaunchToServer}" Margin="0,0,0,5"/>
+                                <Label Content="官网:"/>
+                                <TextBox TextWrapping="NoWrap" Text="{Binding Server.OfficialUrl}" HorizontalAlignment="Left" Width="300"/>
+                                <Label Content="皮肤站:"/>
+                                <TextBox TextWrapping="NoWrap" Text="{Binding Server.SkinUrl}" HorizontalAlignment="Left" Width="300"/>
                                 <Label Content="服务器名称:"/>
                                 <TextBox TextWrapping="NoWrap" Text="{Binding Server.ServerName}" HorizontalAlignment="Left" Width="300"/>
                                 <Label Content="服务器地址:"/>
