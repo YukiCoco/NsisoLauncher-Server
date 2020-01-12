@@ -8,6 +8,7 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
 作者：Nsiso工作室-siso  
 请注意该项目遵循GNU GPL3.0开源协议  
 
+## 二次开发内容：
 NsisoLauncher 从 Blessing-Skin 获取服务器公告与玩家礼包码（未完工）
 ## 演示：
 ![QQ截图20200113010525.png](https://magic.yukino.co/view/1/2020/01/13/fo3pnJGa/QQ%E6%88%AA%E5%9B%BE20200113010525.png)
