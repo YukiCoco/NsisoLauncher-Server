@@ -1,0 +1,135 @@
+{% extends 'admin.base' %}
+
+{% block title %}NsisoLauncher 配置{% endblock %}
+
+{% block content %}
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+    //加载默认选择项
+    $('#edit-item').change();
+  });
+  function showItem(e) {
+    let id = $("option:selected").attr('name');
+    let data;
+    $.get("{{ route('showAd') }}/" + id, data,
+      function (data, textStatus, jqXHR) {
+        $('#edit-title').val(data[0].title);
+        $('#edit-img').val(data[0].img);
+        $('#edit-content').val(data[0].content);
+        $('#edit-id').val(data[0].id);
+      },
+      "JSON"
+    );
+  }
+  function deleteItem(e) {
+    let id = $("option:selected").attr('name');
+    let data = {
+      '_method':'delete',
+      'id':id,
+      '_token':'{{ csrf_token() }}'
+    }
+    $.post("{{ route('rmAd') }}", data,
+      function (data, textStatus, jqXHR) {
+        $('#edit-div').prepend($('<div class="alert alert-success" role="alert">删除成功</div>'));
+        $("option[name='"+ id +"']").remove();
+        $('#edit-item').change();
+      }
+    );
+  }
+  let items = new Array();
+</script>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card card-primary">
+      <form action="{{ route('addAd') }}" method="POST">
+        {{ csrf_field() }}
+        <div class="card-header">
+          <h3 class="card-title">添加公告</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <label for="add-title">标题</label>
+                <input name="title" class="form-control" id="add-title" placeholder="输入标题">
+              </div>
+              <div class="form-group">
+                <label for="add-img">图片</label>
+                <input name="img" class="form-control" id="add-img" placeholder="输入 url">
+              </div>
+              <div class="form-group">
+                <label for="add-content">内容（markdown）</label>
+                <textarea name="content" class="form-control" id="add-content" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer"">
+        <button type=" submit" class="btn btn-primary">
+          添加
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="card card-secondary">
+      <form action="{{ route('editAd') }}" method="POST">
+        {{ csrf_field() }}
+        {{ method_field('PUT') }}
+        <input type="hidden" id="edit-id" name="id">
+        <div class="card-header">
+          <h3 class="card-title">修改公告</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12" id="edit-div">
+              <div class="form-group">
+                <label for="edit-title">选择修改项</label>
+                <select class="form-control" id="edit-item" onchange="showItem(this)">
+                   {% for ad in ads %}
+                   <option name="{{ ad.id }}">{{ ad.title }}</option>
+                   {% endfor %}
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="edit-title">标题</label>
+                <input name="title" class="form-control" id="edit-title" placeholder="输入标题">
+              </div>
+              <div class="form-group">
+                <label for="edit-img">图片</label>
+                <input name="img" class="form-control" id="edit-img" placeholder="输入 url">
+              </div>
+              <div class="form-group">
+                <label for="edit-content">内容（markdown）</label>
+                <textarea name="content" class="form-control" id="edit-content" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer"">
+        <button type="submit" class="btn btn-primary">
+         更新
+          </button>
+          <button class="btn btn-warning" type="button" onclick="deleteItem()">删除</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">README.md（此文件在插件根目录下）</div>
+      </div>
+      <div class="card-body">
+        {{ readme|raw }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
