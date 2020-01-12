@@ -18,7 +18,7 @@ using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 
-namespace NsisoLauncher.Windows
+namespace NsisoLauncher.Views.Windows
 {
     /// <summary>
     /// SettingWindow.xaml 的交互逻辑
@@ -322,18 +322,6 @@ namespace NsisoLauncher.Windows
             string key = (string)userComboBox.SelectedValue;
             config.User.UserDatabase.Remove(key);
             this.ShowMessageAsync("删除用户成功", "请保存以生效");
-        }
-
-        private void delAllAuthnodeButton_Click(object sender, RoutedEventArgs e)
-        {
-            config.User.AuthenticationDic.Clear();
-            this.ShowMessageAsync("清除成功", "请保存以生效");
-        }
-
-        private void delAllUserButton_Click(object sender, RoutedEventArgs e)
-        {
-            config.User.UserDatabase.Clear();
-            this.ShowMessageAsync("清除成功", "请保存以生效");
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)

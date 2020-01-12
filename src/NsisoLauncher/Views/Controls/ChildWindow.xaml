@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="NsisoLauncher.Views.Controls.ChildWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NsisoLauncher.Views.Controls"
+             xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
+             xmlns:markdig="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
+             mc:Ignorable="d" >
+    <Grid>
+        <simpleChildWindow:ChildWindow x:Name="childWindow"
+                                           Title="公告"
+                                           Padding="15"
+                                           IsOpen="True"
+                                           HorizontalContentAlignment="Stretch"
+                                           VerticalContentAlignment="Stretch"
+                                           CloseByEscape="True"
+                                           ShowCloseButton="True"
+                                           >
+            <!--  Content  -->
+            <markdig:MarkdownViewer x:Name="Viewer"/>
+        </simpleChildWindow:ChildWindow>
+    </Grid>
+</UserControl>

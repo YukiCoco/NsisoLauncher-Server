@@ -1,13 +1,13 @@
-﻿<Controls:MetroWindow x:Class="NsisoLauncher.Windows.SettingWindow"
+﻿<Controls:MetroWindow x:Class="NsisoLauncher.Views.Windows.SettingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:userControl="clr-namespace:NsisoLauncher.Controls"
+        xmlns:userControl="clr-namespace:NsisoLauncher.Views.Controls"
         xmlns:util="clr-namespace:NsisoLauncher.Utils"
-        xmlns:local="clr-namespace:NsisoLauncher.Windows"
+        xmlns:local="clr-namespace:NsisoLauncher.Views.Windows"
         mc:Ignorable="d"
         Title="{DynamicResource String.Settingwindow.Title}" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Controls:MetroWindow.Resources>
@@ -308,8 +308,8 @@
                                     <Button Width="100" Content="清除全局验证选择" Click="clearAllauthButton_Click"/>
                                 </StackPanel>
                                 <CheckBox Margin="0,0,0,10" Content="统一通行证服务器依赖（仅在全局使用统一通行证验证模型，且统一通行证后台正确设置后生效）" IsChecked="{Binding User.Nide8ServerDependence}"/>
-                                <Button Style="{DynamicResource SquareButtonStyle}" Content="删除全部验证模型" Background="IndianRed" Foreground="White" Margin="0,0,0,5" Click="delAllAuthnodeButton_Click"/>
-                                <Button Style="{DynamicResource SquareButtonStyle}" Content="删除全部用户" Background="IndianRed" Foreground="White" Click="delAllUserButton_Click"/>
+                                <Button Style="{DynamicResource SquareButtonStyle}" Content="删除全部验证模型" Background="IndianRed" Foreground="White" Margin="0,0,0,5"/>
+                                <Button Style="{DynamicResource SquareButtonStyle}" Content="删除全部用户" Background="IndianRed" Foreground="White"/>
                             </StackPanel>
                         </Expander>
                         <!--<Expander Header="启动验证类型设置" Margin="0,0,0,5">
@@ -386,8 +386,13 @@
 
                         <Expander Header="Minecraft服务器设置" Margin="0,0,0,5">
                             <StackPanel>
+                                <CheckBox Content="服务器模式" IsChecked="{Binding Server.ServerMode}" Margin="0,0,0,5"/>
                                 <CheckBox Content="在主界面显示服务器信息" IsChecked="{Binding Server.ShowServerInfo}" Margin="0,0,0,5"/>
                                 <CheckBox Content="启动后自动进入服务器" IsChecked="{Binding Server.LaunchToServer}" Margin="0,0,0,5"/>
+                                <Label Content="官网:"/>
+                                <TextBox TextWrapping="NoWrap" Text="{Binding Server.OfficialUrl}" HorizontalAlignment="Left" Width="300"/>
+                                <Label Content="皮肤站:"/>
+                                <TextBox TextWrapping="NoWrap" Text="{Binding Server.SkinUrl}" HorizontalAlignment="Left" Width="300"/>
                                 <Label Content="服务器名称:"/>
                                 <TextBox TextWrapping="NoWrap" Text="{Binding Server.ServerName}" HorizontalAlignment="Left" Width="300"/>
                                 <Label Content="服务器地址:"/>
