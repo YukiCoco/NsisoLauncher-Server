@@ -1,0 +1,15 @@
+{
+  "name": "nsiso",
+  "version": "1.0.0",
+  "title": "NsisoLauncher 附属插件",
+  "description": "为 NsisoLauncher 添加服务器公告获取，礼物功能（未完成）。",
+  "author": "Yukino",
+  "url": "https://yukino.co/",
+  "namespace": "Nsiso",
+  "require": {
+    "blessing-skin-server": "^5.0.0"
+  },
+  "enchants": {
+    "config": "Configuration"
+  }
+}
