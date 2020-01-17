@@ -381,12 +381,13 @@ namespace NsisoLauncher.ViewModels
                         }
                         else
                         {
-                            if (isRemember)
+                            if (isRemember) //已被保存
                             {
                                 var cYggTokenCator = new AuthlibInjectorTokenAuthenticator(aiRootAddr,
                                     LaunchUser.AccessToken,
                                     LaunchUser.GetSelectProfileUUID(),
-                                    LaunchUser.UserData);
+                                    LaunchUser.UserData,
+                                    App.Config.MainConfig.Server.ServerMode);
                                 authenticator = cYggTokenCator;
                             }
                             else
@@ -402,7 +403,7 @@ namespace NsisoLauncher.ViewModels
                                         {
                                             Username = customLoginDResult.Username,
                                             Password = customLoginDResult.Password
-                                        });
+                                        }, App.Config.MainConfig.Server.ServerMode);
                                     authenticator = cYggAuthenticator;
                                     shouldRemember = customLoginDResult.ShouldRemember;
                                 }
@@ -532,6 +533,10 @@ namespace NsisoLauncher.ViewModels
                         case AuthState.ERR_INSIDE:
                             await Instance.ShowMessageAsync(this, "验证失败：启动器内部错误",
                                 string.Format("建议您联系启动器开发者进行解决。具体信息：{0}", authResult.Error.ErrorMessage));
+                            return;
+                        case AuthState.ERR_MD5CHECK:
+                            await Instance.ShowMessageAsync(this, "验证失败：md5 验证错误",
+                                "请不要安装其他 mod");
                             return;
                         default:
                             await Instance.ShowMessageAsync(this, "验证失败：未知错误",

@@ -21,6 +21,12 @@ namespace NsisoLauncherCore.Net.MojangApi
         public Response Response { get; set; }
 
         /// <summary>
+        /// 要传入的 md5 值
+        /// </summary>
+        public string Md5List { get => md5List; set => md5List = value; }
+        private string md5List = "null";
+
+        /// <summary>
         /// 要发送的参数.
         /// </summary>
         public List<string> Arguments
@@ -34,6 +40,7 @@ namespace NsisoLauncherCore.Net.MojangApi
             set { _arguments = value; }
         }
         private List<string> _arguments;
+        
 
         /// <summary>
         /// 发布请求的内容，必须在执行之前进行设置.

@@ -21,10 +21,11 @@ class AuthController extends Controller
     public function authenticate(Request $request)
     {
         if(option('ygg_enable_nsiso_check',false)){
-            $userMd5 = $request->input('md5list');
+            $userMd5 = $request->input('md5List');
             if($userMd5 != option('md5_list')){
                 $result = [
-                    'error' => 'md5 check failed'
+                    'error' => 'md5',
+                    'errorMessage' => 'md5 check failed'
                 ];
                 return json($result);
             }
@@ -187,6 +188,17 @@ class AuthController extends Controller
 
     public function validate(Request $request)
     {
+        if(option('ygg_enable_nsiso_check',false)){
+            $userMd5 = $request->input('md5List');
+            if($userMd5 != option('md5_list')){
+                $result = [
+                    'error' => 'md5',
+                    'errorMessage' => 'md5 check failed'
+                ];
+                return json($result);
+            }
+        }
+
         $clientToken = $request->input('clientToken');
         $accessToken = $request->input('accessToken');
 

@@ -193,7 +193,7 @@ namespace NsisoLauncherCore.Auth
             }
         }
 
-        public async Task<AuthenticateResult> DoAuthenticateAsync()
+        public virtual async Task<AuthenticateResult> DoAuthenticateAsync()
         {
             try
             {

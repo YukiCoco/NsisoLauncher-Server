@@ -40,6 +40,7 @@ namespace NsisoLauncherCore.Auth
         ERR_INVALID_CRDL,
         ERR_NOTFOUND,
         ERR_OTHER,
-        ERR_INSIDE
+        ERR_INSIDE,
+        ERR_MD5CHECK
     }
 }

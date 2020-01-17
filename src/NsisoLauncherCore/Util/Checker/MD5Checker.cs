@@ -8,7 +8,6 @@ namespace NsisoLauncherCore.Util.Checker
     {
         public string CheckSum { get; set; }
         public string FilePath { get; set; }
-
         public bool CheckFilePass()
         {
             if (string.IsNullOrWhiteSpace(CheckSum))

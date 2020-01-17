@@ -56,6 +56,7 @@ namespace NsisoLauncherCore.Net.MojangApi.Endpoints
                                             new JProperty("version", "1"))),
                                     new JProperty("username", this.Arguments[0]),
                                     new JProperty("password", this.Arguments[1]),
+                                    new JProperty("md5List", this.Md5List),
                                     new JProperty("clientToken", Requester.ClientToken),
                                     new JProperty("requestUser", true)).ToString();
 
@@ -178,6 +179,7 @@ namespace NsisoLauncherCore.Net.MojangApi.Endpoints
         {
             this.PostContent = new JObject(
                                     new JProperty("accessToken", this.Arguments[0]),
+                                    new JProperty("md5List", this.Md5List),
                                     new JProperty("clientToken", Requester.ClientToken)).ToString();
 
             this.Response = await Requester.Post(this);
