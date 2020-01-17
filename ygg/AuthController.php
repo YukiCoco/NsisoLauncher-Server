@@ -21,7 +21,7 @@ class AuthController extends Controller
     public function authenticate(Request $request)
     {
         if(option('ygg_enable_nsiso_check',false)){
-            $userMd5 = $request->input('md5List');
+            $userMd5 = $request->input('md5list');
             if($userMd5 != option('md5_list')){
                 $result = [
                     'error' => 'md5 check failed'
