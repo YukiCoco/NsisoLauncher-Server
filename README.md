@@ -9,14 +9,15 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
 请注意该项目遵循GNU GPL3.0开源协议  
 ## 使用项目
 [NisisoLauncher](https://github.com/Nsiso/NsisoLauncher)
+
 [yggdrasil-api](https://github.com/bs-community/yggdrasil-api)
 
-## 二次开发内容：
+## 二次开发内容
  + NsisoLauncher 从 Blessing-Skin 获取服务器公告
  + 扩展 [yggdrasil-api](https://github.com/bs-community/yggdrasil-api) ，加入防作弊功能
-## 说明：
+## 说明
 启用防作弊，请使用 ygg/AuthController.php 替换掉 plugins/yggdrasil-api/src/Controllers 中的同名文件。
 启用公告，请在启动器设置开启服务器模式，并填入相关内容。
-## 演示：
+## 演示
 ![QQ截图20200113010525.png](https://magic.yukino.co/view/1/2020/01/13/fo3pnJGa/QQ%E6%88%AA%E5%9B%BE20200113010525.png)
 ![QQ截图20200113010539.png](https://magic.yukino.co/view/1/2020/01/13/OBDmh5j6/QQ%E6%88%AA%E5%9B%BE20200113010539.png)
