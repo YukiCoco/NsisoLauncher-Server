@@ -17,15 +17,15 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
  + 扩展 [yggdrasil-api](https://github.com/bs-community/yggdrasil-api) ，加入防作弊功能
 ## Get Start
 从 Release 下载文件。  
-将插件解压到 Bless Skin 目录下的 plugins 文件夹里。  
+将插件解压到 Blessing Skin 目录下的 plugins 文件夹里。  
 打开启动器设置中的 Minecraft服务器设置 ，勾选服务器模式，填入皮肤站地址。  
 启用防作弊：  
-1. 在 Bless Skin 中安装 yggdrasil 插件，[为游戏服务端加载 authlib-injector](https://github.com/bs-community/yggdrasil-api/wiki/0x03-%E9%85%8D%E5%90%88-authlib-injector-%E4%BD%BF%E7%94%A8)。  
+1. 在 Blessing Skin 中安装 yggdrasil 插件，[为游戏服务端加载 authlib-injector](https://github.com/bs-community/yggdrasil-api/wiki/0x03-%E9%85%8D%E5%90%88-authlib-injector-%E4%BD%BF%E7%94%A8)。  
 2. 使用 AuthController.php 替换掉 plugins/yggdrasil-api/src/Controllers 中的同名文件。  
 3. 使用 GetMd5.exe 获取 mods 文件夹下所有文件的 md5 值，并在网页插件后台填入值。  
 4. 为 NsisoLauncher 启用 authlib-injector 验证模型。  
 
-Enjoy it.
+Enjoy it!
 ## 演示
 ![QQ截图20200113010525.png](https://magic.yukino.co/view/1/2020/01/13/fo3pnJGa/QQ%E6%88%AA%E5%9B%BE20200113010525.png)
 ![QQ截图20200118000050.png](https://magic.yukino.co/view/1/2020/01/18/jBxCJwzw/QQ%E6%88%AA%E5%9B%BE20200118000050.png)
