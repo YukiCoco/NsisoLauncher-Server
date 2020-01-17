@@ -24,6 +24,7 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
 2. 使用 AuthController.php 替换掉 plugins/yggdrasil-api/src/Controllers 中的同名文件。  
 3. 使用 GetMd5.exe 获取 mods 文件夹下所有文件的 md5 值，并在网页插件后台填入值。  
 4. 为 NsisoLauncher 启用 authlib-injector 验证模型。  
+
 Enjoy it.
 ## 演示
 ![QQ截图20200113010525.png](https://magic.yukino.co/view/1/2020/01/13/fo3pnJGa/QQ%E6%88%AA%E5%9B%BE20200113010525.png)
