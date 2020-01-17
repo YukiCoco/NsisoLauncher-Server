@@ -535,7 +535,7 @@ namespace NsisoLauncher.ViewModels
                                 string.Format("建议您联系启动器开发者进行解决。具体信息：{0}", authResult.Error.ErrorMessage));
                             return;
                         case AuthState.ERR_MD5CHECK:
-                            await Instance.ShowMessageAsync(this, "验证失败：md5 验证错误",
+                            await Instance.ShowMessageAsync(this, "验证失败：防作弊验证失败",
                                 "请不要安装其他 mod");
                             return;
                         default:

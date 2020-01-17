@@ -60,10 +60,20 @@ namespace NsisoLauncherCore.Net.MojangApi.Endpoints
                                     new JProperty("clientToken", Requester.ClientToken),
                                     new JProperty("requestUser", true)).ToString();
 
-                this.Response = await Requester.Post(this);
-                if (this.Response.IsSuccess)
+                try
                 {
-                    JObject user = JObject.Parse(this.Response.RawMessage);
+                    this.Response = await Requester.Post(this);
+                }
+                catch
+                {
+                    return new AuthenticateResponse(Error.GetError(this.Response))
+                    {
+                        IsSuccess = false
+                    };
+                }
+                JObject user = JObject.Parse(this.Response.RawMessage);
+                if (!user.ContainsKey("error"))
+                {
                     List<Uuid> availableProfiles = new List<Uuid>();
 
                     foreach (JObject profile in user["availableProfiles"])
@@ -79,8 +89,6 @@ namespace NsisoLauncherCore.Net.MojangApi.Endpoints
                             Demo = null
                         });
                     }
-
-
                     return new AuthenticateResponse(this.Response)
                     {
                         AccessToken = user["accessToken"].ToObject<string>(),
@@ -93,20 +101,18 @@ namespace NsisoLauncherCore.Net.MojangApi.Endpoints
                             Legacy = (user["selectedProfile"].ToString().Contains("legacyProfile") ? user["selectedProfile"]["legacyProfile"].ToObject<bool>() : false),
                             Demo = null
                         },
-                        User = user["user"].ToObject<UserData>()
+                        User = user["user"].ToObject<UserData>(),
+                        IsSuccess = true
                     };
                 }
                 else
                 {
-                    try
+                    AuthenticationResponseError error = new AuthenticationResponseError(JObject.Parse(this.Response.RawMessage));
+                    return new AuthenticateResponse(this.Response)
                     {
-                        AuthenticationResponseError error = new AuthenticationResponseError(JObject.Parse(this.Response.RawMessage));
-                        return new AuthenticateResponse(this.Response) { Error = error };
-                    }
-                    catch (Exception)
-                    {
-                        return new AuthenticateResponse(Error.GetError(this.Response));
-                    }
+                        Error = error,
+                        IsSuccess = false
+                    };
                 }
             }
             catch (Exception ex)
