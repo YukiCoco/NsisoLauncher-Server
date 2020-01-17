@@ -9,6 +9,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NsisoLauncherCore", "NsisoL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NsisoLauncher.Test", "NsisoLauncher.Test\NsisoLauncher.Test.csproj", "{99AF489E-FD2D-4E64-B470-70ADA4E3E591}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetMd5", "GetMd5\GetMd5.csproj", "{3B11A3C8-F357-4CFC-92F3-A6D0F6E11C8D}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		NsisoLauncherCore\NsisoLauncherCore.projitems*{14e2fa92-77f6-4bff-9654-38fa29034aa9}*SharedItemsImports = 13
@@ -28,6 +30,10 @@ Global
 		{99AF489E-FD2D-4E64-B470-70ADA4E3E591}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99AF489E-FD2D-4E64-B470-70ADA4E3E591}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99AF489E-FD2D-4E64-B470-70ADA4E3E591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B11A3C8-F357-4CFC-92F3-A6D0F6E11C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B11A3C8-F357-4CFC-92F3-A6D0F6E11C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B11A3C8-F357-4CFC-92F3-A6D0F6E11C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B11A3C8-F357-4CFC-92F3-A6D0F6E11C8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
