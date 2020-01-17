@@ -16,7 +16,7 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
  + NsisoLauncher 从 Blessing-Skin 获取服务器公告
  + 扩展 [yggdrasil-api](https://github.com/bs-community/yggdrasil-api) ，加入防作弊功能
 ## Get Start
-从 Release 下载文件。  
+从 Releases 下载文件。  
 将插件解压到 Blessing Skin 目录下的 plugins 文件夹里。  
 打开启动器设置中的 Minecraft服务器设置 ，勾选服务器模式，填入皮肤站地址。  
 启用防作弊：  
