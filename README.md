@@ -18,8 +18,13 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
 ## Get Start
 从 Release 下载文件。  
 将插件解压到 Bless Skin 目录下的 plugins 文件夹里。  
-要启用防作弊，请使用 AuthController.php 替换掉 plugins/yggdrasil-api/src/Controllers 中的同名文件。  
-要启用公告功能，请在启动器设置开启服务器模式，并填入相关内容。  
+打开启动器设置中的 Minecraft服务器设置 ，勾选服务器模式，填入皮肤站地址。  
+启用防作弊：  
+1. 在 Bless Skin 中安装 yggdrasil 插件，[为游戏服务端加载 authlib-injector](https://github.com/bs-community/yggdrasil-api/wiki/0x03-%E9%85%8D%E5%90%88-authlib-injector-%E4%BD%BF%E7%94%A8)。  
+2. 使用 AuthController.php 替换掉 plugins/yggdrasil-api/src/Controllers 中的同名文件。  
+3. 使用 GetMd5.exe 获取 mods 文件夹下所有文件的 md5 值，并在网页插件后台填入值。  
+4. 为 NsisoLauncher 启用 authlib-injector 验证模型。  
+Enjoy it.
 ## 演示
 ![QQ截图20200113010525.png](https://magic.yukino.co/view/1/2020/01/13/fo3pnJGa/QQ%E6%88%AA%E5%9B%BE20200113010525.png)
 ![QQ截图20200113010539.png](https://magic.yukino.co/view/1/2020/01/17/S5UBA0SR/QQ%E6%88%AA%E5%9B%BE20200117233345.png)
