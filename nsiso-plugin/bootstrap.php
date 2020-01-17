@@ -40,20 +40,6 @@ return function (Dispatcher $events) {
      * $position 是菜单项在整个菜单中的位置（从 0 开始），如果添加后看不到你的菜单，请检查这一项是否过大/过小
      * $menu 数组的值详见下
      */
-    Hook::addMenuItem('user', 0, [
-        // 菜单标题
-        //
-        // 这里 title 的定义使用了翻译器 translator
-        // [Nsiso::general.menu] 中的命名空间表示在本插件 /lang 目录下寻找语言文件
-        // [general.menu] 表示 general.yml 这个语言文件中的 [menu] 这个 key，可以多层嵌套下去
-        // * 其他本地化的示例可以看下面的路由定义
-        'title' => 'Nsiso::general.menu',
-        // 菜单链接
-        'link'  => 'user/example',
-        // 菜单图标，详见 Font Awesome
-        // @see http://fontawesome.io/icons/
-        'icon'  => 'fa-gift'
-    ]);
 
     /**
      * 如何添加一个路由：
@@ -66,15 +52,6 @@ return function (Dispatcher $events) {
      * 注意：如果想要使用 Laravel 的路由缓存功能（php artisan route:cache）的话，请不要使用闭包路由。
      */
     Hook::addRoute(function ($router) {
-        /**
-         * 这只是一个最简单的路由定义（传递了闭包作为参数），其他用法请参照
-         * @see  https://laravel-china.org/docs/5.6/routing
-         */
-        $router->get('/user/example', function () {
-            // 改变浏览器/皮肤站的语言设置再访问此链接
-            // 翻译器会依据你当前的语言设置显示对应的内容
-            return trans('Nsiso::general.hello');
-        })->middleware(['web', 'auth']);
         $router->get('/nsiso/ad/{id?}', 'Nsiso\NsisoController@showAd')->name('showAd');
         $router->group(
             [
