@@ -23,6 +23,7 @@ using System.Threading;
 using System.Windows.Media;
 using System.Windows.Controls;
 using NsisoLauncherCore;
+using System.Windows.Media.Imaging;
 
 namespace NsisoLauncher.ViewModels
 {
@@ -62,6 +63,7 @@ namespace NsisoLauncher.ViewModels
         #endregion
 
         #region ElementsState
+        private ImageSource backgroundImageSource = new BitmapImage(new Uri("/Resource/bg.jpg", UriKind.Relative));
         public WindowState WindowState { get; set; }
 
         public double Volume { get; set; } = 0.5;
@@ -72,7 +74,7 @@ namespace NsisoLauncher.ViewModels
 
         public string WindowTitle { get; set; }
 
-        public string BackgroundImageSource { get; set; }
+        public ImageSource BackgroundImageSource { get => backgroundImageSource; set => backgroundImageSource = value; }
         #endregion
 
         /// <summary>
@@ -803,11 +805,12 @@ namespace NsisoLauncher.ViewModels
             }
             if (App.Config.MainConfig.Customize.CustomBackGroundPicture)
             {
-                string[] files = Directory.GetFiles(Path.GetDirectoryName(App.Config.MainConfigPath), "bgpic_?.png");
+                //string localConfigPath = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+                string[] files = Directory.GetFiles(Path.Combine(Path.GetDirectoryName(App.Config.MainConfigPath)), "bgpic_?.png");
                 if (files.Count() != 0)
                 {
                     Random random = new Random();
-                    BackgroundImageSource = files[random.Next(files.Count())];
+                    BackgroundImageSource = new BitmapImage(new Uri(files[random.Next(files.Length)]));
                     //ImageBrush brush = new ImageBrush(new BitmapImage(new Uri()))
                     //{ TileMode = TileMode.FlipXY, AlignmentX = AlignmentX.Right, Stretch = Stretch.UniformToFill };
                     //this.Background = brush;

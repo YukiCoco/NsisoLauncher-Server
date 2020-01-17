@@ -7,8 +7,7 @@
              xmlns:userControl="clr-namespace:NsisoLauncher.Views.Controls"
              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             mc:Ignorable="d"
-             d:DesignHeight="350" d:DesignWidth="400">
+             mc:Ignorable="d">
     <DockPanel>
         <StackPanel Grid.ColumnSpan="2" DockPanel.Dock="Top">
             <userControl:HeadSculControl VerticalAlignment="Top" Margin="0,10"/>
@@ -25,7 +24,6 @@
                 <ComboBox x:Name="userComboBox" Margin="5,0,10,0"
                  IsEditable="True"
                  Height="23" Grid.ColumnSpan="2"
-                 controls:TextBoxHelper.ClearTextButton="True"
                  DisplayMemberPath="Value.UserName"
                  controls:TextBoxHelper.Watermark="{DynamicResource String.Mainwindow.InputPlayerName}"
                  ItemsSource="{Binding RelativeSource={RelativeSource Mode= FindAncestor, AncestorType={x:Type userControl:MainPanelControl}}, Path=UsersSource}"

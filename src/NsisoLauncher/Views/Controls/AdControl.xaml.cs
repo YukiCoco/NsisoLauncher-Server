@@ -41,6 +41,7 @@ namespace NsisoLauncher.Views.Controls
         string skinUrl = App.Config.MainConfig.Server.SkinUrl;
         private async void AdsInit()
         {
+            flipView.IsEnabled = false;
             using(WebClient webClient = new WebClient())
             {
                 string response = await webClient.DownloadStringTaskAsync(skinUrl + "/nsiso/ad");
@@ -68,6 +69,7 @@ namespace NsisoLauncher.Views.Controls
                     grids.Add(grid);
                 }
                 this.flipView.ItemsSource = grids;
+                flipView.IsEnabled = true;
             }
         }
 

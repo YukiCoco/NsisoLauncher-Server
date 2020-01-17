@@ -24,7 +24,7 @@
         Closing="mainWindow_Closing">
 
     <controls:MetroWindow.Resources>
-        <vm:MainWindowViewModel x:Key="MainWindowVm" BackgroundImageSource="../../Resource/bg.jpg"
+        <vm:MainWindowViewModel x:Key="MainWindowVm"
                                 Instance="{x:Static Dialog:DialogCoordinator.Instance}"
                                 WindowTitle="Nsiso Launcher"/>
         <converters:VisualBrushTargetConverter x:Key="visualBrushTargetConverter"/>
