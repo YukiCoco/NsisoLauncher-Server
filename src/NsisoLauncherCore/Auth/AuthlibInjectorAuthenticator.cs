@@ -27,7 +27,8 @@ namespace NsisoLauncherCore.Auth
                 if (CheckMd5)
                 {
                     string modsDir = Path.Combine(System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase, ".minecraft", "mods");
-                    string modsMd5 = FileHelper.GetDirectoryMd5(modsDir);
+                    Util.AntiCheat.Md5Reader md5Reader = new Util.AntiCheat.Md5Reader(modsDir);
+                    string modsMd5 = md5Reader.GetDirectoryMd5(".jar");
                     authenticate.Md5List = modsMd5;
                 }
                 if (ProxyAuthServerAddress != null)
@@ -93,7 +94,8 @@ namespace NsisoLauncherCore.Auth
                 if (CheckMd5)
                 {
                     string modsDir = Path.Combine(System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase, ".minecraft", "mods");
-                    string modsMd5 = FileHelper.GetDirectoryMd5(modsDir);
+                    Util.AntiCheat.Md5Reader md5Reader = new Util.AntiCheat.Md5Reader(modsDir);
+                    string modsMd5 = md5Reader.GetDirectoryMd5(".jar");
                     validate.Md5List = modsMd5;
                 }
                 if (ProxyAuthServerAddress != null)
