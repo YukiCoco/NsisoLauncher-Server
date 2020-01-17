@@ -2,7 +2,7 @@
   "name": "nsiso",
   "version": "1.0.0",
   "title": "NsisoLauncher 附属插件",
-  "description": "为 NsisoLauncher 添加服务器公告获取，礼物功能（未完成）。",
+  "description": "NsisoLauncher 从 Blessing-Skin 获取服务器公告，实现防作弊（需要修改 yggdrasil-api）。",
   "author": "Yukino",
   "url": "https://yukino.co/",
   "namespace": "Nsiso",
