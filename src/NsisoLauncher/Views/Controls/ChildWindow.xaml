@@ -7,6 +7,10 @@
              xmlns:simpleChildWindow="clr-namespace:MahApps.Metro.SimpleChildWindow;assembly=MahApps.Metro.SimpleChildWindow"
              xmlns:markdig="clr-namespace:Markdig.Wpf;assembly=Markdig.Wpf"
              mc:Ignorable="d" >
+    <FrameworkElement.CommandBindings>
+        <CommandBinding Command="{x:Static markdig:Commands.Hyperlink}" Executed="OpenHyperlink" />
+        <CommandBinding Command="{x:Static markdig:Commands.Image}" Executed="ClickOnImage" />
+    </FrameworkElement.CommandBindings>
     <Grid>
         <simpleChildWindow:ChildWindow x:Name="childWindow"
                                            Title="公告"

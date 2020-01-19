@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,16 @@ namespace NsisoLauncher.Views.Controls
         public ChildWindow()
         {
             InitializeComponent();
+        }
+
+        private void OpenHyperlink(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            Process.Start(e.Parameter.ToString());
+        }
+
+        private void ClickOnImage(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show($"URL: {e.Parameter}");
         }
     }
 }
