@@ -36,7 +36,8 @@ class NsisoController extends Controller
             $ad = ad::where('id',$request->id)->get();
             return response()->json($ad);
         }
-        return response()->json(Ad::all()->toArray());
+        //按照时间顺序排列
+        return response()->json(DB::table('ads')->orderBy('created_at','desc')->get()->toArray());
     }
 
     //删除公告
