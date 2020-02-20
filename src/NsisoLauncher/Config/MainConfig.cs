@@ -365,6 +365,10 @@ namespace NsisoLauncher.Config
         /// </summary>
         public bool ServerMode { get; set; }
 
+        /// <summary>
+        /// 游戏版本
+        /// </summary>
+        public string GameVersion { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 

@@ -228,7 +228,8 @@ namespace NsisoLauncher.Config
                     OfficialUrl = "",
                     ShowServerInfo = false,
                     LaunchToServer = false,
-                    Port = 25565
+                    Port = 25565,
+                    GameVersion = "1.0.0"
                 },
                 Customize = new Customize()
                 {

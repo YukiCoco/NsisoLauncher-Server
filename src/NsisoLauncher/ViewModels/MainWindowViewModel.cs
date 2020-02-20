@@ -24,6 +24,8 @@ using System.Windows.Media;
 using System.Windows.Controls;
 using NsisoLauncherCore;
 using System.Windows.Media.Imaging;
+using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace NsisoLauncher.ViewModels
 {
@@ -134,6 +136,72 @@ namespace NsisoLauncher.ViewModels
                 _ = CustomizeRefresh();
                 //检查环境
                 _ = CheckEnvironment();
+
+                Task.Run(async() =>
+                {
+                    //检测游戏更新
+                    if (String.IsNullOrEmpty((App.Config.MainConfig.Server.GameVersion)))
+                    {
+                        App.Config.MainConfig.Server.GameVersion = "1.0.0";
+                        App.Config.Save();
+                    }
+                    string gameVersion = App.Config.MainConfig.Server.GameVersion;
+                    string updatesUrl = App.Config.MainConfig.Server.SkinUrl + "/nsiso/updates";
+                    string currentVersion = "1.0.0";
+                    using (WebClient webClient = new WebClient())
+                    {
+                        string response = await webClient.DownloadStringTaskAsync(updatesUrl);
+                        //反序列化 Json
+                        JArray jArray = JArray.Parse(response);
+                        IList<JObject> results = jArray.OfType<JObject>().ToList();
+                        List<DownloadTask> downloadTaskList = new List<DownloadTask>();
+                        //遍历游戏版本
+                        foreach (JObject result in results)
+                        {
+                            if(Helper.CompareVersion(gameVersion, result["version"].ToString()))
+                            {
+                                currentVersion = result["version"].ToString();
+                                //删除文件
+                                if (!string.IsNullOrEmpty(result["delete_files"].ToString()))
+                                {
+                                    foreach (var item in result["delete_files"].ToString().Split(';'))
+                                    {
+                                        string deletePath = item;
+                                        if (File.Exists(deletePath))
+                                        {
+                                            File.Delete(deletePath);
+                                        }
+                                    }
+                                }
+                                //下载更新
+                                string updates = result["update_files"].ToString();
+                                if (!string.IsNullOrEmpty(updates))
+                                {
+                                    foreach (var item in updates.Split(';'))
+                                    {
+                                        string updateFileUrl = item.Split(',')[0];
+                                        string savePath = item.Split(',')[1];
+                                        DownloadTask downloadTask = new DownloadTask("版本更新", updateFileUrl, Path.Combine(savePath,Path.GetFileName(updateFileUrl)));
+                                        downloadTaskList.Add(downloadTask);
+                                    }
+                                }
+                            }
+                        }
+                        if(downloadTaskList.Count > 0)
+                        {
+                            await Instance.ShowMessageAsync(this, "服务器更新", $"检测到客户端更新，准备开始下载{downloadTaskList.Count}个文件。");
+                            App.Downloader.AddDownloadTask(downloadTaskList);
+                            App.Downloader.StartDownload();
+                            //打开更新窗口
+                            App.Current.Dispatcher.Invoke(() =>
+                            {
+                                new DownloadWindow().Show();
+                            });
+                        }
+                        App.Config.MainConfig.Server.GameVersion = currentVersion;
+                        App.Config.Save();
+                    }
+                });
             }
         }
 
