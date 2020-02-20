@@ -28,7 +28,5 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
 Enjoy it!
 ## 演示  
 （如无法查看图片，请刷新网页）
-
-![QQ截图20200113010525.png](https://magic.yukino.co/view/1/2020/01/13/fo3pnJGa/QQ%E6%88%AA%E5%9B%BE20200113010525.png)
-![QQ截图20200118000050.png](https://magic.yukino.co/view/1/2020/01/18/jBxCJwzw/QQ%E6%88%AA%E5%9B%BE20200118000050.png)
-![QQ截图20200113010539.png](https://magic.yukino.co/view/1/2020/01/17/S5UBA0SR/QQ%E6%88%AA%E5%9B%BE20200117233345.png)
+![mainmenu.png](https://github.com/YukiCoco/NsisoLauncher-Server/blob/master/mainmenu.png?raw=true)
+![bs-plugin1.png](https://github.com/YukiCoco/NsisoLauncher-Server/blob/master/bs-plugin1.png?raw=true)
