@@ -53,6 +53,7 @@ return function (Dispatcher $events) {
      */
     Hook::addRoute(function ($router) {
         $router->get('/nsiso/ad/{id?}', 'Nsiso\NsisoController@showAd')->name('showAd');
+        $router->get('/nsiso/updates', 'Nsiso\NsisoController@showUpdate');
         $router->group(
             [
                 'middleware' => ['web', 'auth', 'admin'],
@@ -62,6 +63,8 @@ return function (Dispatcher $events) {
                 $router->post('/nsiso/ad', 'NsisoController@addAd')->name('addAd');
                 $router->put('/nsiso/ad', 'NsisoController@editAd')->name('editAd');
                 $router->delete('/nsiso/ad', 'NsisoController@rmAd')->name('rmAd');
+                $router->post('/nsiso/update', 'NsisoController@addUpdate')->name('addUpdate');
+                $router->delete('/nsiso/update', 'NsisoController@rmUpdate')->name('rmUpdate');
             }
         );
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Nsiso\Models\Ad;
+use Nsiso\Models\Update;
 
 class NsisoController extends Controller
 {
@@ -15,7 +16,6 @@ class NsisoController extends Controller
         $ad->img = $request->img;
         $ad->content = $request->content;
         $ad->save();
-
         return redirect()->back();
     }
 
@@ -45,5 +45,23 @@ class NsisoController extends Controller
         Ad::where('id',$request->id)->delete();
         return redirect()->back();
     }
+    //添加更新
+    public function addUpdate(Request $request){
+        $update = new Update();
+        $update->version = $request->version;
+        $update->update_files = $request->update_files;
+        $update->delete_files = $request->delete_files;
+        $update->save();
+        return redirect()->back();
+    }
 
+    //删除更新
+    public function rmUpdate(Request $request){
+        Update::where('version',$request->version)->delete();
+        return redirect()->back();
+    }
+    //显示更新
+    public function showUpdate(){
+        return json(DB::table('updates')->get()->toArray());
+    }
 }

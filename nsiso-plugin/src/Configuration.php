@@ -5,6 +5,7 @@ namespace Nsiso;
 use Option;
 use Parsedown;
 use Nsiso\Models\Ad;
+use Nsiso\Models\Update;
 
 class Configuration
 {
@@ -23,7 +24,8 @@ class Configuration
             $readme = (new Parsedown())->text($markdown);
         }
         $ads = Ad::all();
+        $updates = Update::all();
         $adCount = $ads->count();
-        return view('Nsiso::config', compact('readme','ads','adCount','md5Form'));
+        return view('Nsiso::config', compact('readme','ads','adCount','md5Form','updates'));
     }
 }

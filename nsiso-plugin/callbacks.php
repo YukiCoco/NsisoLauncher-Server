@@ -11,6 +11,15 @@ return [
                 $table->timestamps();
             });
         }
+        if (! Schema::hasTable('updates')) {
+            Schema::create('updates', function ($table) {
+                $table->increments('id');
+                $table->string('version');
+                $table->text('update_files')->nullable();
+                $table->text('delete_files')->nullable();
+                $table->timestamps();
+            });
+        }
         // 你也可以在回调函数的参数列表中使用类型提示，Laravel 服务容器将会自动进行依赖注入
         Log::info('[ExamplePlugin] 示例插件已启用，IoC 容器自动为我注入了 PluginManager 实例：', compact('manager'));
     },
