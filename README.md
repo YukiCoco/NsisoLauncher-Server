@@ -27,7 +27,7 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
 4. 为 NsisoLauncher 启用 authlib-injector 验证模型。  
 
 ## 自动更新使用方法
-自动更新方法为两个模块，**删除**与**下载**，启动器的逻辑为先删除，后下载更新。
+自动更新方法为两个模块，**删除** 与 **下载**，启动器的逻辑为先删除，后下载更新。
 网页端填写规范：
 + 版本号：版本号命名规范为 `x.x.x` 例如 1.0.0
 + 更新文件：文件1url,文件1保存路径;文件2url,文件2保存路径
