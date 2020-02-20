@@ -70,7 +70,7 @@ namespace NsisoLauncher.Resource {
         }
         
         /// <summary>
-        ///   查找类似 0.9.9 的本地化字符串。
+        ///   查找类似 1.1.5 的本地化字符串。
         /// </summary>
         public static string LauncherVersion {
             get {

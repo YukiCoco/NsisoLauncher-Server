@@ -122,7 +122,7 @@
     <comment>启动器更新api</comment>
   </data>
   <data name="LauncherVersion" xml:space="preserve">
-    <value>0.9.9</value>
+    <value>1.1.5</value>
     <comment>启动器版本</comment>
   </data>
 </root>
