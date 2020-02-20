@@ -24,8 +24,7 @@
         <controls:Tile Title="皮肤站" HorizontalTitleAlignment="Right" Grid.Row="0" Grid.Column="1" Height="100" Click="Tile_Click_1" Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}">
             <iconPacks:FontAwesome Kind="UserSolid" Height="50" Width="50"/>
         </controls:Tile>
-        <controls:Tile Title="礼物" HorizontalTitleAlignment="Right" Grid.Row="0" Grid.Column="2" Height="100" Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}">
-            <iconPacks:FontAwesome Kind="GiftSolid" Height="50" Width="50"/>
+        <controls:Tile x:Name="CurrentOnline" Title="当前在线" HorizontalTitleAlignment="Right" CountFontSize="50" Grid.Row="0" Grid.Column="2" Height="100" Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}">
         </controls:Tile>
     </Grid>
 </UserControl>

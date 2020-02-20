@@ -26,6 +26,9 @@ using NsisoLauncherCore;
 using System.Windows.Media.Imaging;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
+using NsisoLauncher.Resource;
+using System.Diagnostics;
 
 namespace NsisoLauncher.ViewModels
 {
@@ -137,71 +140,103 @@ namespace NsisoLauncher.ViewModels
                 //检查环境
                 _ = CheckEnvironment();
 
-                Task.Run(async() =>
+                #region 服务器客户端更新
+                if (App.Config.MainConfig.Server.ServerMode)
                 {
-                    //检测游戏更新
-                    if (String.IsNullOrEmpty((App.Config.MainConfig.Server.GameVersion)))
+                    Task.Run(async () =>
                     {
-                        App.Config.MainConfig.Server.GameVersion = "1.0.0";
-                        App.Config.Save();
-                    }
-                    string gameVersion = App.Config.MainConfig.Server.GameVersion;
-                    string updatesUrl = App.Config.MainConfig.Server.SkinUrl + "/nsiso/updates";
-                    string currentVersion = "1.0.0";
-                    using (WebClient webClient = new WebClient())
-                    {
-                        string response = await webClient.DownloadStringTaskAsync(updatesUrl);
-                        //反序列化 Json
-                        JArray jArray = JArray.Parse(response);
-                        IList<JObject> results = jArray.OfType<JObject>().ToList();
-                        List<DownloadTask> downloadTaskList = new List<DownloadTask>();
-                        //遍历游戏版本
-                        foreach (JObject result in results)
+                        //检测游戏更新
+                        if (String.IsNullOrEmpty((App.Config.MainConfig.Server.GameVersion)))
                         {
-                            if(Helper.CompareVersion(gameVersion, result["version"].ToString()))
+                            App.Config.MainConfig.Server.GameVersion = "1.0.0";
+                            App.Config.Save();
+                        }
+                        string gameVersion = App.Config.MainConfig.Server.GameVersion;
+                        string updatesUrl = App.Config.MainConfig.Server.SkinUrl + "/nsiso/updates";
+                        using (WebClient webClient = new WebClient())
+                        {
+                            string response = "";
+                            try
                             {
-                                currentVersion = result["version"].ToString();
-                                //删除文件
-                                if (!string.IsNullOrEmpty(result["delete_files"].ToString()))
+                                response = await webClient.DownloadStringTaskAsync(updatesUrl);
+                            }
+                            catch
+                            {
+                                await Instance.ShowMessageAsync(this, "服务器更新", "检测更新失败。");
+                                return;
+                            }
+                            //反序列化 Json
+                            JArray jArray = JArray.Parse(response);
+                            IList<JObject> results = jArray.OfType<JObject>().ToList();
+                            List<DownloadTask> downloadTaskList = new List<DownloadTask>();
+                            //遍历游戏版本
+                            foreach (JObject result in results)
+                            {
+                                if (Helper.CompareVersion(gameVersion, result["version"].ToString()))
                                 {
-                                    foreach (var item in result["delete_files"].ToString().Split(';'))
+                                    //删除文件
+                                    if (!string.IsNullOrEmpty(result["delete_files"].ToString()))
                                     {
-                                        string deletePath = item;
-                                        if (File.Exists(deletePath))
+                                        foreach (var item in result["delete_files"].ToString().Split(';'))
                                         {
-                                            File.Delete(deletePath);
+                                            string deletePath = item;
+                                            if (File.Exists(deletePath))
+                                            {
+                                                File.Delete(deletePath);
+                                            }
                                         }
                                     }
-                                }
-                                //下载更新
-                                string updates = result["update_files"].ToString();
-                                if (!string.IsNullOrEmpty(updates))
-                                {
-                                    foreach (var item in updates.Split(';'))
+                                    //下载更新
+                                    string updates = result["update_files"].ToString();
+                                    if (!string.IsNullOrEmpty(updates))
                                     {
-                                        string updateFileUrl = item.Split(',')[0];
-                                        string savePath = item.Split(',')[1];
-                                        DownloadTask downloadTask = new DownloadTask("版本更新", updateFileUrl, Path.Combine(savePath,Path.GetFileName(updateFileUrl)));
-                                        downloadTaskList.Add(downloadTask);
+                                        foreach (var item in updates.Split(';'))
+                                        {
+                                            string updateFileUrl = item.Split(',')[0];
+                                            string savePath = item.Split(',')[1];
+                                            DownloadTask downloadTask = new DownloadTask("版本更新", updateFileUrl, Path.Combine(savePath, Path.GetFileName(updateFileUrl)));
+                                            downloadTaskList.Add(downloadTask);
+                                        }
                                     }
+                                    //保存版本号
+                                    App.Config.MainConfig.Server.GameVersion = result["version"].ToString();
+                                    App.Config.Save();
                                 }
                             }
-                        }
-                        if(downloadTaskList.Count > 0)
-                        {
-                            await Instance.ShowMessageAsync(this, "服务器更新", $"检测到客户端更新，准备开始下载{downloadTaskList.Count}个文件。");
-                            App.Downloader.AddDownloadTask(downloadTaskList);
-                            App.Downloader.StartDownload();
-                            //打开更新窗口
-                            App.Current.Dispatcher.Invoke(() =>
+                            if (downloadTaskList.Count > 0)
                             {
-                                new DownloadWindow().Show();
-                            });
+                                await Instance.ShowMessageAsync(this, "服务器更新", $"检测到客户端更新，准备开始下载{downloadTaskList.Count}个文件。");
+                                App.Downloader.AddDownloadTask(downloadTaskList);
+                                App.Downloader.StartDownload();
+                                //打开更新窗口
+                                App.Current.Dispatcher.Invoke(() =>
+                                {
+                                    new DownloadWindow().Show();
+                                });
+                            }
                         }
-                        App.Config.MainConfig.Server.GameVersion = currentVersion;
-                        App.Config.Save();
+                    });
+                }
+                #endregion
+
+                #region 获取启动器更新
+                Task.Run(async() =>
+                {
+                    using (WebClient webClient = new WebClient())
+                    {
+                        string response = webClient.DownloadString(LauncherResource.LauncherApi);
+                        JObject jObject = JObject.Parse(response);
+                        if (Helper.CompareVersion(LauncherResource.LauncherVersion, (string)jObject["version"]))
+                        {
+                            string url = (string)jObject["url"];
+                            string savePath = Path.Combine(Directory.GetCurrentDirectory(), Path.GetFileName((string)jObject["url"]));
+                            webClient.DownloadFile(url, savePath);
+                            await this.Instance.ShowMessageAsync(this, "启动器更新", "启动器下载完毕，将为你打开最新版本的启动器。");
+                            Process.Start(savePath, Convert.ToString(Process.GetCurrentProcess().Id));
+                        }
                     }
                 });
+                #endregion
             }
         }
 

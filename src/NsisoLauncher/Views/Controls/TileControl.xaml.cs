@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NsisoLauncherCore.Net.Server;
 
 namespace NsisoLauncher.Views.Controls
 {
@@ -25,6 +26,18 @@ namespace NsisoLauncher.Views.Controls
             InitializeComponent();
             if (!App.Config.MainConfig.Server.ServerMode)
                 this.Visibility = System.Windows.Visibility.Collapsed;
+            if (!string.IsNullOrEmpty(App.Config.MainConfig.Server.Address))
+            {
+                Task.Run(() =>
+                {
+                    ServerInfo serverInfo = new ServerInfo(App.Config.MainConfig.Server.Address, App.Config.MainConfig.Server.Port);
+                    serverInfo.StartGetServerInfo();
+                    App.Current.Dispatcher.Invoke(() =>
+                    {
+                        this.CurrentOnline.Count = Convert.ToString(serverInfo.CurrentPlayerCount);
+                    });
+                });
+            }
         }
 
         private void Tile_Click(object sender, RoutedEventArgs e)

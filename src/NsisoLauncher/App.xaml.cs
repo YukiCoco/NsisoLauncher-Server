@@ -1,7 +1,10 @@
 ﻿ 
 using MahApps.Metro;
+using Newtonsoft.Json.Linq;
 using NsisoLauncher.Config;
 using NsisoLauncher.Core.Util;
+using NsisoLauncher.Resource;
+using NsisoLauncher.Utils;
 using NsisoLauncher.Views.Windows;
 using NsisoLauncherCore;
 using NsisoLauncherCore.Modules;
@@ -10,6 +13,7 @@ using NsisoLauncherCore.Util;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -52,6 +56,22 @@ namespace NsisoLauncher
                 DebugWindow debugWindow = new DebugWindow();
                 debugWindow.Show();
                 LogHandler.OnLog += (s, log) => debugWindow?.AppendLog(s, log);
+            }
+            #endregion
+
+            #region 从旧版本跳转
+            String[] args = System.Environment.GetCommandLineArgs();
+            if(args.Length == 2)
+            {
+                //关闭并删除旧版本
+                Task.Run(() =>
+                {
+                    Process oldLauncher = Process.GetProcessById(Convert.ToInt32(args[1]));
+                    string oldLauncherPath = oldLauncher.MainModule.FileName;
+                    oldLauncher.Kill();
+                    oldLauncher.WaitForExit();
+                    File.Delete(oldLauncherPath);
+                });
             }
             #endregion
 
@@ -173,6 +193,7 @@ namespace NsisoLauncher
             VersionList = new ObservableCollection<Version>();
             RefreshVersionList();
             #endregion
+
         }
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

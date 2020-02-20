@@ -100,6 +100,11 @@
     <Compile Include="Config\ConfigHandler.cs" />
     <Compile Include="Config\LauncherProfilesConfig.cs" />
     <Compile Include="Config\MainConfig.cs" />
+    <Compile Include="Resource\LauncherResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LauncherResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Helper.cs" />
     <Compile Include="Views\Controls\AdControl.xaml.cs">
       <DependentUpon>AdControl.xaml</DependentUpon>
@@ -270,6 +275,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource\LauncherResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LauncherResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="FodyWeavers.xsd">
