@@ -15,6 +15,7 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
 ## 二次开发内容
  + NsisoLauncher 从 Blessing-Skin 获取服务器公告
  + 扩展 [yggdrasil-api](https://github.com/bs-community/yggdrasil-api) ，加入防作弊功能
+ 
 ## Get Start
 从 Releases 下载文件。  
 将插件解压到 Blessing Skin 目录下的 plugins 文件夹里。  
@@ -25,7 +26,13 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
 3. 使用 GetMd5.exe 获取 mods 文件夹下所有文件的 md5 值，并在网页插件后台填入值。  
 4. 为 NsisoLauncher 启用 authlib-injector 验证模型。  
 
-Enjoy it!
+## 自动更新使用方法
+自动更新方法为两个模块，**删除**与**下载**，启动器的逻辑为先删除，后下载更新。
+网页端填写规范：
++ 版本号：版本号命名规范为 `x.x.x` 例如 1.0.0
++ 更新文件：文件1url,文件1保存路径;文件2url,文件2保存路径
++ 删除文件：文件1路径;文件2路径
+
 ## 演示  
 （如无法查看图片，请刷新网页）
 ![mainmenu.png](https://github.com/YukiCoco/NsisoLauncher-Server/blob/master/mainmenu.png?raw=true)
