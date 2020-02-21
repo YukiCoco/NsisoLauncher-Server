@@ -30,10 +30,9 @@ A New Minecraft Launcher (unofficial) from Nsiso (Master)
 自动更新方法为两个模块，**删除** 与 **下载**，启动器的逻辑为先删除，后下载更新。
 网页端填写规范：
 + 版本号：版本号命名规范为 `x.x.x` 例如 1.0.0
-+ 更新文件：文件1url,文件1保存路径;文件2url,文件2保存路径
-+ 删除文件：文件1路径;文件2路径
++ 更新文件：文件1url,文件1保存路径;文件2url,文件2保存路径 例如：``http://sample.com/a.jar,.minecraft/mods;http://sample.com/b.jar,.minecraft/mods``  
++ 删除文件：文件1路径;文件2路径 例如：``.minecraft/mods/a.jar;.minecraft/mods/b.jar``
 
 ## 演示  
-（如无法查看图片，请刷新网页）
 ![mainmenu.png](https://github.com/YukiCoco/NsisoLauncher-Server/blob/master/mainmenu.png?raw=true)
 ![bs-plugin1.png](https://github.com/YukiCoco/NsisoLauncher-Server/blob/master/bs-plugin1.png?raw=true)
